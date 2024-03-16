@@ -1,10 +1,10 @@
 const { google } = require("googleapis");
 
 // These id's and secrets should come from .env file.
-const CLIENT_ID = "x1014630152515-ouo13i5ulfev018qlv501b2gp9dfojqp.apps.googleusercontent.com";
-const CLIENT_SECRET = "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";
+const CLIENT_ID = "1014630152515-jvftjtfbele2rhpokf41vlqt4vd5g06d.apps.googleusercontent.com";
+const CLIENT_SECRET = "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";
 const REDIRECT_URI = "https://developers.google.com/oauthplayground";
-const REFRESH_TOKEN = "1//04Y4BO5_aOei_CgYIARAAGAQSNwF-L9Irbhh6x8WNY3_x6WKesOgkY1VjopCWlXet57y19NVmvchZEiXq0XndzU_j4et6beKvddI";
+const REFRESH_TOKEN = "1//04fMTUnkGYwd7CgYIARAAGAQSNwF-L9IrJSSJxJIYdY_1_4yxShReRh__lZeR9DevnQmwQhhylHalyWO9HljNcj1MD0oYHYHRKrM";
 
 // Create an OAuth2 client with the credentials
 const oAuth2Client = new google.auth.OAuth2(
@@ -52,7 +52,7 @@ const mailSurveyForm = async (req, res) => {
       userId: "me",
       requestBody: {
         raw: Buffer.from(
-          `Subject: Survey Form Submission\nTo: engrrehmanzahra894@gmail.com\nContent-Type: text/html; charset=utf-8\n\n${emailContent}`
+          `Subject: Survey Form Submission\nTo: yassinemijane@gmail.com\nContent-Type: text/html; charset=utf-8\n\n${emailContent}`
         ).toString("base64"),
       },
     });
