@@ -52,7 +52,7 @@ const mailSurveyForm = async (req, res) => {
       userId: "me",
       requestBody: {
         raw: Buffer.from(
-          `Subject: Survey Form Submission\nTo: yassinemijane@gmail.com\nContent-Type: text/html; charset=utf-8\n\n${emailContent}`
+          `Subject: Survey Form Submission\nTo: augmentationagency@gmail.com\nContent-Type: text/html; charset=utf-8\n\n${emailContent}`
         ).toString("base64"),
       },
     });
