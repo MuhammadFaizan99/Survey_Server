@@ -12,6 +12,21 @@ const oAuth2Client = new google.auth.OAuth2(
   CLIENT_SECRET,
   REDIRECT_URI
 );
+
+// Function to refresh access token
+const refreshAccessToken = async () => {
+  try {
+    const { tokens } = await oAuth2Client.refreshToken(REFRESH_TOKEN);
+    oAuth2Client.setCredentials(tokens);
+    console.log("Access token refreshed successfully");
+    return tokens.access_token;
+  } catch (error) {
+    console.error("Error refreshing access token:", error);
+    throw error;
+  }
+};
+
+// Set initial credentials
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
 // Create a Gmail API instance
@@ -45,7 +60,12 @@ const mailSurveyForm = async (req, res) => {
   `;
 
   try {
-    const accessToken = await oAuth2Client.getAccessToken();
+    let accessToken = await oAuth2Client.getAccessToken();
+
+    // If access token is expired, refresh it
+    if (accessToken.expiry_date <= Date.now()) {
+      accessToken = await refreshAccessToken();
+    }
 
     // Send the email using the Gmail API
     const response = await gmail.users.messages.send({
